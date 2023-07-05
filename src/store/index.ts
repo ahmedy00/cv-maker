@@ -2,6 +2,13 @@ import { defineStore } from 'pinia'
 
 export const useAppStore = defineStore('app', {
     state: () => ({
-        count: 0
-    })
+        userPhoto: ''
+    }),
+    persist: true,
+    actions: {
+      setUserPhoto (photo: string) {
+          this.userPhoto = photo
+      }
+    }
+
 })
