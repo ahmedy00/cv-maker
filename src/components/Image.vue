@@ -9,18 +9,21 @@
 <script setup lang="ts">
 import NoProfile from '@/assets/noprofile.jpg'
 import { onBeforeMount, ref } from 'vue'
+import { useAppStore } from '@/store'
 
+
+const store = useAppStore()
 const selectedImage = ref()
 
 const uploadImage = (event) => {
   selectedImage.value = URL.createObjectURL(event.target.files[0])
-  localStorage.setItem('userPhoto', JSON.stringify(selectedImage.value))
+  store.setUserPhoto(selectedImage.value)
 }
 
 onBeforeMount(() => {
-  const photo = JSON.parse(localStorage.getItem('userPhoto'))
+  const photo = store.userPhoto
   if (photo) {
-    selectedImage.value = JSON.parse(localStorage.getItem('userPhoto'))
+    selectedImage.value = store.userPhoto
   }
 })
 
