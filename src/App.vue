@@ -1,7 +1,8 @@
 <template>
-  <div>CV</div>
+  <CvEdit/>
 </template>
 
 <script setup lang="ts">
+import CvEdit from '@/components/CvEdit.vue'
 
 </script>
