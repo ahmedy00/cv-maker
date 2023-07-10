@@ -1,13 +1,16 @@
 <template>
-  <div class="edit-photo d-flex justify-content-center">
-    <img v-if="!selectedImage" :src="NoProfile" alt="">
+  <div class="edit-photo">
+    <div v-if="!selectedImage" class="no-profile-photo">
+      <button class="add-image-button">
+      <i class="fa fa-plus" aria-hidden="true"></i>
+    </button>
+    </div>
     <img v-else :src="selectedImage" alt="">
     <input type="file" id="img-file" name="img-file" accept="image/*" @change="uploadImage">
   </div>
 </template>
 
 <script setup lang="ts">
-import NoProfile from '@/assets/noprofile.jpg'
 import { onBeforeMount, ref } from 'vue'
 import { useAppStore } from '@/store'
 
@@ -21,9 +24,11 @@ const uploadImage = (event) => {
 }
 
 onBeforeMount(() => {
+  // TODO: There is an issue for upload image, need to find better way (file system)
   const photo = store.userPhoto
   if (photo) {
     selectedImage.value = store.userPhoto
+    console.log('selectedImage.value', selectedImage.value)
   }
 })
 
@@ -35,20 +40,36 @@ onBeforeMount(() => {
   cursor: pointer;
 }
 
+.add-image-button {
+  width: 125px;
+  height: 125px;
+  background: transparent;
+  border: none;
+}
+
+.add-image-button i {
+  font-size: 50px;
+  color: dimgrey;
+}
+
 .edit-photo img {
   max-width: 125px;
-  border-radius: 12px;
   position: absolute;
-  top: 3rem;
 }
 
 .edit-photo input[type = "file"] {
   position: absolute;
-  top: 3rem;
   width: 125px;
   height: 125px;
   opacity: 0;
   cursor: pointer;
+}
+
+.no-profile-photo {
+  position: absolute;
+  border: 1px dashed black;
+  width: 125px;
+  height: 125px;
 }
 
 /* breakpoints */
