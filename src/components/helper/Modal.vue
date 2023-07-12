@@ -1,12 +1,15 @@
 <template>
-  <div :class="`${modalName}-modal`" class="modal-wrapper d-flex align-items-center justify-content-center" @click="closeModal">
-    <div style="background: white; width: 35rem; height: 80vh" ref="whiteGroundRef">
-      <div class="close-button">
-        <button class="btn d-flex" @click="closeModal">
+  <div :class="`${modalName}-modal`" class="modal-wrapper modal d-flex align-items-center justify-content-center" @click="closeModal" ref="overlayRef">
+    <div class="white-ground p-2 pb-4">
+      <div class="close-button float-end">
+        <button class="btn d-flex" @click="cancelAction" ref="closeButtonRef">
           <i class="fa fa-times m-auto" aria-hidden="true"></i>
         </button>
       </div>
-      test
+      <br><br>
+      <h2 class="text-center">Add New Work Experience</h2>
+      <br>
+      <slot @closeModal="cancelAction"/>
     </div>
   </div>
 </template>
@@ -18,11 +21,16 @@ const emit = defineEmits(['closeModal'])
 
 const modalName = ref('')
 
-const whiteGroundRef = ref()
+const overlayRef = ref()
+const closeButtonRef = ref()
 
 
-const closeModal = (event) => {
-  if (event.target !== whiteGroundRef.value) {
+const cancelAction = () => {
+  emit('closeModal')
+}
+
+const closeModal = (event: MouseEvent) => {
+  if (event.target === overlayRef.value) {
     emit('closeModal')
   }
 }
@@ -33,7 +41,7 @@ const closeModal = (event) => {
 <style scoped>
 
 .modal-wrapper {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -41,8 +49,13 @@ const closeModal = (event) => {
   background-color: rgba(128,128,128,0.75);
 }
 
+.white-ground {
+  background: white;
+  width: 35rem;
+}
+
 .close-button {
-  float: right;
+  border-radius: 50%;
 }
 
 .close-button button {
