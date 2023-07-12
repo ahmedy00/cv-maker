@@ -11,7 +11,7 @@ import CvEdit from '@/components/CvEdit.vue'
 
 <style>
   * {
-    font-family: "Lucida Console", "Courier New", monospace;;
+    font-family: "Gill Sans Extrabold", sans-serif;
   }
 
   .app-wrapper {
