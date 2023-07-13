@@ -1,20 +1,14 @@
 <template>
-  <div class="app-wrapper">
-    <CvEdit/>
-  </div>
+  <RouterView/>
 </template>
 
 <script setup lang="ts">
-import CvEdit from '@/components/CvEdit.vue'
 
 </script>
 
 <style>
   * {
-    font-family: "Gill Sans Extrabold", sans-serif;
-  }
-
-  .app-wrapper {
-    padding: 2rem 1rem 2rem 1rem;
+    font-family: "Inter var experimental", "Inter var", Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+    font-weight: 500;
   }
 </style>
