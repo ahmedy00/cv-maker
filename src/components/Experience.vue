@@ -44,7 +44,7 @@
 import Modal from '@/components/helper/Modal.vue'
 import { onBeforeMount, ref } from 'vue'
 import ExperienceForm from '@/components/form/ExperienceForm.vue'
-import { useAppStore } from '@/store'
+import { useAppStore } from '../store'
 import { ExperienceType } from 'definitions'
 
 const store = useAppStore()
@@ -57,13 +57,13 @@ const closeModal = () => {
   isModalVisible.value = false
 }
 
-const experienceList = ref() as ExperienceType[]
+const experienceList = ref<ExperienceType[]>()
 
-const editableExperience = ref()
+const editableExperience = ref<ExperienceType>()
 
-const isExperienceEditing = ref(false)
+const isExperienceEditing = ref<Boolean>(false)
 
-const experienceIndex = ref()
+const experienceIndex = ref<Number>()
 
 const capitalize = (word: string) => {
   return word.split(' ').map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(' ')
