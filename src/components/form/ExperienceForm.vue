@@ -1,6 +1,6 @@
 <template>
   <div class="container px-4">
-    <form @submit.prevent="">
+    <form @submit.prevent="" @keypress.enter="applyAction">
       <div class="row form-row">
         <div class="form-group col-6">
           <label class="ms-2" for="role">Role/Position</label>
