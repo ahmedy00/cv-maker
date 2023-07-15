@@ -1,20 +1,21 @@
 import { defineStore } from 'pinia'
-import { StateType, ExperienceType } from 'definitions'
+import Experience from '../types/store/experience/experience'
+import State from '../types/store/state'
 
 export const useAppStore = defineStore('app', {
     state: () => ({
         userPhoto: '',
         workExperience: []
-    }) as StateType,
+    }) as State,
     persist: true,
     actions: {
       setUserPhoto (photo: string) {
           this.userPhoto = photo
       },
-      setWorkExperience (workExperience: ExperienceType) {
+      setWorkExperience (workExperience: Experience) {
         this.workExperience.push(workExperience)
       },
-      updateWorkExperience (workExperience: ExperienceType, index: number) {
+      updateWorkExperience (workExperience: Experience, index: number) {
           this.workExperience[index] = workExperience
       }
     }

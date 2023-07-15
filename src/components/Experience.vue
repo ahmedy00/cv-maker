@@ -4,7 +4,7 @@
       <h4 class="w-50">Work Experience</h4>
     </div>
     <div v-if="!!experienceList.length" class="mt-2 p-1">
-      <div v-for="(experience, index) in experienceList" :key="`${index}-experience`">
+      <div v-for="(experience, index) in experienceList" :key="`${index}-experience`" style="border: 1px dashed black; padding: 5px; border-radius: 3px">
         <div class="float-end">
           <button @click="removeExperience(index)" class="btn border-0">
             <i style="color: brown; font-size: 1.2rem" class="fa fa-trash me-3" aria-hidden="true"></i>
@@ -45,7 +45,7 @@ import Modal from '@/components/helper/Modal.vue'
 import { onBeforeMount, ref } from 'vue'
 import ExperienceForm from '@/components/form/ExperienceForm.vue'
 import { useAppStore } from '../store'
-import { ExperienceType } from 'definitions'
+import Experience from '../types/store/experience/experience'
 
 const store = useAppStore()
 
@@ -57,9 +57,22 @@ const closeModal = () => {
   isModalVisible.value = false
 }
 
-const experienceList = ref<ExperienceType[]>()
+const experienceList = ref<Experience[]>([])
+console.log('type22', typeof  experienceList.value)
 
-const editableExperience = ref<ExperienceType>()
+const editableExperience = ref<Experience>({
+  city: '',
+  companyName: '',
+  country: '',
+  details: [],
+  endDateMonth: null,
+  endDateYear: null,
+  isStillWorking: false,
+  role: '',
+  startDateMonth: null,
+  startDateYear: null
+})
+console.log('type', typeof  editableExperience.value)
 
 const isExperienceEditing = ref<Boolean>(false)
 
@@ -73,7 +86,7 @@ const removeExperience = (index: number) => {
   experienceList.value.splice(index, 1)
 }
 
-const editExperience = (experience: ExperienceType, index: number) => {
+const editExperience = (experience: Experience, index: number) => {
   editableExperience.value = experience
   experienceIndex.value = index
   isExperienceEditing.value = true

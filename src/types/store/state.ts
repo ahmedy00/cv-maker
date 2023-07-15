@@ -1,7 +1,7 @@
-import { ExperienceType } from 'definitions'
+import Experience from './experience/experience'
 type State = {
     userPhoto: string,
-    workExperience: ExperienceType[]
+    workExperience: Experience[]
 }
 
 export default State

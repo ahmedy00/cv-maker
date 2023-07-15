@@ -12,7 +12,7 @@
 
 <script setup lang="ts">
 import { onBeforeMount, ref } from 'vue'
-import { useAppStore } from '@/store'
+import { useAppStore } from '../store'
 
 
 const store = useAppStore()

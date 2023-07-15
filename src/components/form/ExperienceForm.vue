@@ -88,13 +88,13 @@
 <script setup lang="ts">
 import { onBeforeMount, reactive, Ref, ref } from 'vue'
 import Button from '@/components/helper/Button.vue'
-import { useAppStore } from '@/store'
-import { ExperienceType } from 'definitions'
+import { useAppStore } from '../../store'
+import Experience from '../../types/store/experience/experience'
 
 const props = defineProps({
   editableExperience: {
-    type: Object<ExperienceType>,
-    default: {}
+    type: Object as () => Experience,
+    default: () => {}
   },
   isExperienceEditing: {
     type: Boolean,
@@ -110,9 +110,9 @@ const emit = defineEmits(['closeModal'])
 
 const store = useAppStore()
 
-const detail = ref('')
+const detail = ref<string>('')
 const detailTextArea = ref()
-const workExperience = reactive({
+const workExperience = reactive<Experience>({
   role: props.editableExperience.role || '',
   companyName: props.editableExperience.companyName ||  '',
   startDateMonth: props.editableExperience.startDateMonth ||  null,
@@ -123,11 +123,10 @@ const workExperience = reactive({
   city: props.editableExperience.city ||  '',
   country: props.editableExperience.country ||  '',
   details: props.editableExperience.details ||  []
-}) as ExperienceType
-
+})
 
 const isEdit: Ref<Boolean> = ref(false)
-const editingIndex: Ref<Number | undefined> = ref()
+const editingIndex = ref<number>()
 const addDetail = () => {
   if (detail.value && !isEdit.value) {
     workExperience.details.push(detail.value)

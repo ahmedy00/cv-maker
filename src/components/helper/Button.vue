@@ -36,10 +36,13 @@ defineProps({
     default: ''
   }
 })
-const emit = defineEmits(['action'])
-
+const emit = defineEmits<{
+  (e: 'cancelAction'): void
+  (e: 'applyAction'): void
+}>()
 
 const cancelAction = () => {
+
   emit('cancelAction')
 }
 

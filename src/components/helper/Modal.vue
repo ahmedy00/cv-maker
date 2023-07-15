@@ -19,7 +19,7 @@ import { ref } from 'vue'
 
 const emit = defineEmits(['closeModal'])
 
-const modalName = ref('')
+const modalName = ref<string>('')
 
 const overlayRef = ref()
 const closeButtonRef = ref()
