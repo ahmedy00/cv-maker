@@ -44,8 +44,8 @@
 import Modal from '@/components/helper/Modal.vue'
 import { onBeforeMount, ref } from 'vue'
 import ExperienceForm from '@/components/form/ExperienceForm.vue'
-import { useAppStore } from '../store'
-import Experience from '../types/store/experience/experience'
+import { useAppStore } from '../../store'
+import Experience from '../../types/store/experience/experience'
 
 const store = useAppStore()
 
@@ -58,7 +58,6 @@ const closeModal = () => {
 }
 
 const experienceList = ref<Experience[]>([])
-console.log('type22', typeof  experienceList.value)
 
 const editableExperience = ref<Experience>({
   city: '',
