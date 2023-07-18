@@ -13,7 +13,6 @@
 <style scoped>
 
 .sidebar-wrapper {
-  position: absolute;
   height: 100%;
   width: 100%;
 }
