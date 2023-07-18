@@ -71,7 +71,6 @@ const editableExperience = ref<Experience>({
   startDateMonth: null,
   startDateYear: null
 })
-console.log('type', typeof  editableExperience.value)
 
 const isExperienceEditing = ref<Boolean>(false)
 
