@@ -1,11 +1,14 @@
 import { defineStore } from 'pinia'
 import Experience from '../types/store/experience/experience'
+import Language from '../types/store/language'
 import State from '../types/store/state'
+import i18n from '../locales/i18n'
 
 export const useAppStore = defineStore('app', {
     state: () => ({
         userPhoto: '',
-        workExperience: []
+        workExperience: [] as Experience[],
+        currentLanguage: {}
     }) as State,
     persist: true,
     actions: {
@@ -16,7 +19,13 @@ export const useAppStore = defineStore('app', {
         this.workExperience.push(workExperience)
       },
       updateWorkExperience (workExperience: Experience, index: number) {
-          this.workExperience[index] = workExperience
+        this.workExperience[index] = workExperience
+      },
+      setCurrentLanguage (currentLanguage: Language) {
+        this.currentLanguage = currentLanguage
+        // FIXME: Type Issue
+        // @ts-ignore
+        i18n.global.locale = currentLanguage.code
       }
     }
 
