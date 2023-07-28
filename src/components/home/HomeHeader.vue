@@ -7,9 +7,29 @@
               <img width="45" src="https://s3-alpha.figma.com/hub/file/1913095808/a7bdc469-cd70-4ea1-bb57-b59204ad8182-cover.png" alt="">
             </div>
             <div class="item-container col-6 d-flex flex-row-reverse align-items-center">
-              <button class="btn item item-button">
-                <i class="fa-solid fa-earth-asia"></i>
-              </button>
+               <v-menu>
+                <template v-slot:activator="{ props }">
+                    <v-icon :color="'white'" :size="18" v-bind="props">
+                      <i class="fa-solid fa-earth-asia"></i>
+                    </v-icon>
+                </template>
+                 <v-card>
+                  <v-list class="pa-0">
+                    <v-list-item
+                      class="pa-0"
+                      v-for="(language, index) in languages"
+                      :key="`language-${index}`"
+                    >
+                      <v-btn
+                        @click="changeLanguage(language)"
+                        dense
+                      >
+                        {{ language.name }}
+                      </v-btn>
+                    </v-list-item>
+                  </v-list>
+                </v-card>
+              </v-menu>
               <span class="item item-link cursor-pointer me-4">Lorem</span>
               <RouterLink class="item-link" to="">
                 <span class="item me-4">Previous Resumes</span>
@@ -27,6 +47,10 @@
 <script setup lang="ts">
 import { languages } from '../../app'
 import router from '../../router'
+import { onBeforeMount, ref } from 'vue'
+import i18n from '../../locales/i18n'
+import { useAppStore } from '../../store'
+
 
 const props = defineProps({
   headerHeight: {
@@ -35,10 +59,22 @@ const props = defineProps({
   }
 })
 
+const store = useAppStore()
+
+onBeforeMount(() => {
+  
+})
+
+const selectedLanguage = ref<string>(store.currentLanguage.code)
+
 const routeToHome = () => {
   router.push({
     name: 'Home'
   })
+}
+
+const changeLanguage = (lang) => {
+  store.setCurrentLanguage(lang)
 }
 
 </script>
@@ -58,12 +94,6 @@ const routeToHome = () => {
 .item-link {
   color: white;
   text-decoration: none;
-}
-
-.item-button {
-  font-size: 1.2rem;
-  border: none;
-  color: #fff
 }
 
 .item:hover {
