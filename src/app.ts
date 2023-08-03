@@ -1,10 +1,12 @@
 export const languages = [
-    {
-        name: 'Turkish',
-        code: 'tr'
-    },
-        {
-        name: 'English',
-        code: 'en'
-    }
+  {
+    name: 'Turkish',
+    code: 'tr'
+  },
+  {
+    name: 'English',
+    code: 'en'
+  }
 ]
+
+export const appName = 'CURRICULUM VITA'
