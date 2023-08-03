@@ -1,3 +1,7 @@
 {
-  "Hello": "Hello"
+  "Welcome": "Welcome to the {name}",
+  "SubHeader": "Create, customize, and download dynamic CVs in PDF format, empowering you to present a professional and impressive resume effortlessly.",
+  "Create": "Create a CV",
+  "Contribution" : "Contribution",
+  "PreviousResumes": "Previous Resumes"
 }

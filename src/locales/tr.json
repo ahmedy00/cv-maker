@@ -1,3 +1,7 @@
 {
-  "Hello": "Merhaba"
+  "Welcome": "{name}'ya hoş geldiniz",
+  "SubHeader": "Kolayca profesyonel ve etkileyici bir özgeçmiş oluşturun, özelleştirin ve PDF formatında indirin",
+  "Create": "CV oluştur",
+  "Contribution" : "Katkıda bulun",
+  "PreviousResumes": "Önceki Özgeçmişler"
 }
