@@ -1,11 +1,11 @@
 <template>
   <div :style="{height: `calc(100vh - ${props.headerHeight}px)`}">
     <section class="d-flex flex-column align-items-center justify-content-center h-50">
-      <h1 class="section-title text-center mb-5">Welcome to the CV-MAKER</h1>
-      <p class="section-info text-center">An approachable, performant and versatile framework for building web user interfaces.</p>
+      <h1 class="section-title text-center mb-5">{{ $t('Welcome', { name: appName }) }}</h1>
+      <p class="section-info text-center">{{ $t('SubHeader') }}</p>
       <div>
         <RouterLink to="edit">
-          <button class="btn border-0" style="color: red; background: green">CREATE A CV</button>
+          <v-btn dense :color="'#42b883'" style="color: white">{{ $t('Create') }}</v-btn>
         </RouterLink>
       </div>
     </section>
@@ -13,6 +13,7 @@
 </template>
 
 <script setup lang="ts">
+import { appName } from '../../app'
 
 const props = defineProps({
   headerHeight: {
