@@ -17,6 +17,7 @@ module.exports = {
     'prefer-const': ['error', {
       destructuring: 'all',
       ignoreReadBeforeAssign: true,
-    }]
+    }],
+    'indent': ['error', 2]
   },
 }
