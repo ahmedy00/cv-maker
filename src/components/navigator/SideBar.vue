@@ -1,9 +1,20 @@
 <template>
-  <div class="sidebar-wrapper">
-    <div class="sidebar-container">
-      {{ $t('Hello') }}
-    </div>
-  </div>
+  <v-layout>
+    <v-navigation-drawer
+      :rail="true"
+      style="height: 500px"
+      class="my-auto"
+      color="#42b883"
+    >
+      <v-list density="compact" nav>
+        <v-list-item value="icon" class="d-flex justify-center">
+          <i class="fa-solid fa-chevron-left"></i>
+        </v-list-item>
+        <v-list-item></v-list-item>
+        <v-list-item></v-list-item>
+      </v-list>
+    </v-navigation-drawer>
+  </v-layout>
 </template>
 
 <script setup lang="ts">
@@ -11,29 +22,5 @@
 </script>
 
 <style scoped>
-
-.sidebar-wrapper {
-  height: 100%;
-  width: 100%;
-}
-
-.sidebar-container {
-  background: red;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 4rem;
-  height: 100%;
-  transition: height 1s;
-}
-
-@media (max-width: 992px) {
-  .sidebar-container {
-    top: calc(100% - 3rem);
-    width: 100%;
-    height: 4rem;
-    transition: height 1s, width 1s;
-  }
-}
 
 </style>
