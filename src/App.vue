@@ -4,6 +4,15 @@
 
 <script setup lang="ts">
 
+import { onBeforeMount } from 'vue'
+import { useAppStore } from './store'
+import i18n from './plugins/i18n'
+
+onBeforeMount(() => {
+  const store = useAppStore()
+  i18n.global.locale = store.currentLanguage.code || 'en'
+})
+
 </script>
 
 <style>
