@@ -3,20 +3,15 @@ import { createPinia } from 'pinia'
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 import 'bootstrap/dist/css/bootstrap.css'
 import router from './router/index'
-import { setupI18n } from './locales/i18n'
+import { setupI18n } from './plugins/i18n'
 
 import App from './App.vue'
 
 // Vuetify
 import 'vuetify/styles'
-import { createVuetify } from 'vuetify'
-import * as components from 'vuetify/components'
-import * as directives from 'vuetify/directives'
+import { vuetify } from './plugins/vuetify'
 
-const vuetify = createVuetify({
-  components,
-  directives,
-})
+console.log('vuetfiy', vuetify)
 
 
 const app = createApp(App)
