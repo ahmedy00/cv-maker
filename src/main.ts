@@ -11,8 +11,6 @@ import App from './App.vue'
 import 'vuetify/styles'
 import { vuetify } from './plugins/vuetify'
 
-console.log('vuetfiy', vuetify)
-
 
 const app = createApp(App)
 const pinia = createPinia()
