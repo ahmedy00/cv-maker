@@ -1,7 +1,7 @@
 <template>
   <div :style="{height: `calc(100vh - ${props.headerHeight}px)`}">
     <section class="d-flex flex-column align-items-center justify-content-center h-50">
-      <h1 class="section-title text-center mb-5">{{ $t('Welcome', { name: appName }) }}</h1>
+      <h1 class="section-title text-center mb-5 pa-1">{{ $t('Welcome', { name: appName }) }}</h1>
       <p class="section-info text-center">{{ $t('SubHeader') }}</p>
       <div>
         <RouterLink to="edit">

@@ -9,7 +9,7 @@
 import HomeHeader from '@/components/home/HomeHeader.vue'
 import HomeBody from '@/components/home/HomeBody.vue'
 
-const headerHeight = 65
+const headerHeight = 75
 </script>
 
 
