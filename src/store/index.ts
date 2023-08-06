@@ -8,7 +8,8 @@ export const useAppStore = defineStore('app', {
   state: () => ({
     userPhoto: '',
     workExperience: [] as Experience[],
-    currentLanguage: {}
+    currentLanguage: {},
+    selectedTheme: 'light'
   }) as State,
   persist: true,
   actions: {
@@ -26,6 +27,9 @@ export const useAppStore = defineStore('app', {
       // FIXME: Type Issue
       // @ts-ignore
       i18n.global.locale = currentLanguage.code
+    },
+    setTheme () {
+      this.selectedTheme = this.selectedTheme === 'light' ? 'dark' : 'light'
     }
   }
 
