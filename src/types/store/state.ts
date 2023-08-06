@@ -4,7 +4,8 @@ import Language from './language'
 type State = {
     userPhoto: string,
     workExperience: Experience[],
-    currentLanguage: Language
+    currentLanguage: Language,
+    selectedTheme: string
 }
 
 export default State
