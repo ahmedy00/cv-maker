@@ -1,8 +1,8 @@
 <template>
-  <div :style="{height: `calc(100vh - ${props.headerHeight}px)`}">
+  <div class="body-wrapper" :style="{height: `calc(100vh - ${props.headerHeight}px)`, background: store.selectedTheme === 'dark' ? 'linear-gradient(90deg,#a1a1a1 -250%,#333)' : ''}">
     <section class="d-flex flex-column align-items-center justify-content-center h-50">
-      <h1 class="section-title text-center mb-5 pa-1">{{ $t('Welcome', { name: appName }) }}</h1>
-      <p class="section-info text-center">{{ $t('SubHeader') }}</p>
+      <h1 class="section-title text-center mb-5 pa-1" :style="{color: store.selectedTheme === 'dark' ? 'linear-gradient(315deg,#647eff 25%,#42d392)' : 'linear-gradient(315deg,#42d392 100%,#647eff)'}">{{ $t('Welcome', { name: appName }) }}</h1>
+      <p class="section-info text-center" :style="{color: store.selectedTheme === 'dark' ? '#ebebeb99' : '#3c3c3cb3'}">{{ $t('SubHeader') }}</p>
       <div>
         <RouterLink to="edit">
           <v-btn dense :color="'#42b883'" style="color: white">{{ $t('Create') }}</v-btn>
@@ -14,6 +14,7 @@
 
 <script setup lang="ts">
 import { appName } from '../../app'
+import { useAppStore } from '../../store'
 
 const props = defineProps({
   headerHeight: {
@@ -22,10 +23,16 @@ const props = defineProps({
   }
 })
 
+const store = useAppStore()
+
 </script>
 
 
 <style scoped>
+
+.body-wrapper {
+  transition: background 2s ease-in;
+}
 
 .section-title {
   font-size: 4rem;
@@ -36,7 +43,7 @@ const props = defineProps({
 
 .section-info {
   font-size: 1.8rem;
-  color: #3c3c3cb3;
+  transition: color .5s ease;
   padding: 0 10px;
 }
 
