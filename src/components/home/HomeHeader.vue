@@ -1,17 +1,31 @@
 <template>
-  <v-container fluid style="background: #42b883">
+  <v-container fluid style="background: #42b883" :style="{height: `${props.headerHeight}px`}">
       <v-row>
         <v-col :cols="4" @click="routeToHome">
           <img width="45" src="https://s3-alpha.figma.com/hub/file/1913095808/a7bdc469-cd70-4ea1-bb57-b59204ad8182-cover.png" alt="">
         </v-col>
-        <v-col class="d-flex align-center justify-end" :cols="16">
+        <v-col class="d-flex align-center justify-end" :cols="8">
           <span class="mr-6">
             <a class="item-link item" href="https://github.com/ahmedy00/cv-maker" target="_blank">{{ $t('Contribution') }}</a>
           </span>
           <RouterLink class="item-link" to="">
-            <span class="item mr-6">{{ $t('PreviousResumes') }}</span>
+            <span class="item mr-4">{{ $t('PreviousResumes') }}</span>
           </RouterLink>
-          <span class="item item-link cursor-pointer mr-6">Lorem</span>
+          <v-list-item class="mr-2">
+            <v-btn
+              dense
+              :ripple="false"
+              elevation="0"
+              :color="store.selectedTheme === 'light' ? '#f3f3f3' : 'transparent'"
+              class="rounded-5 border-3 d-flex align-items-center justify-content-center"
+              width="60px"
+              height="30px"
+              @click="changeTheme"
+            >
+              <i v-if="store.selectedTheme === 'light'" class="fa-solid fa-sun pr-8 trans"></i>
+              <i v-else class="fa-solid fa-moon pl-8 trans"></i>
+            </v-btn>
+          </v-list-item>
           <v-menu>
             <template v-slot:activator="{ props }">
                 <v-icon :color="'white'" :size="20" v-bind="props">
@@ -19,18 +33,15 @@
                 </v-icon>
             </template>
             <v-card>
-              <v-list class="pa-0">
+              <v-list class="py-0">
                 <v-list-item
-                  class="pa-0"
+                  @click="changeLanguage(language)"
                   v-for="(language, index) in languages"
                   :key="`language-${index}`"
+                  dense
+                  :disabled="store.currentLanguage.code === language.code"
                 >
-                  <v-btn
-                    @click="changeLanguage(language)"
-                    dense
-                  >
-                    {{ language.name }}
-                  </v-btn>
+                  {{ language.name }}
                 </v-list-item>
               </v-list>
             </v-card>
@@ -43,25 +54,16 @@
 <script setup lang="ts">
 import { languages } from '../../app'
 import router from '../../router'
-import { onBeforeMount, ref } from 'vue'
-// import i18n from '../../locales/i18n'
 import { useAppStore } from '../../store'
-
 
 const props = defineProps({
   headerHeight: {
     type: Number,
-    default: 65
+    default: 72
   }
 })
 
 const store = useAppStore()
-
-onBeforeMount(() => {
-  
-})
-
-const selectedLanguage = ref<string>(store.currentLanguage.code)
 
 const routeToHome = () => {
   router.push({
@@ -73,15 +75,14 @@ const changeLanguage = (lang) => {
   store.setCurrentLanguage(lang)
 }
 
+const changeTheme = () => {
+  store.setTheme()
+}
+
 </script>
 
 
 <style scoped>
-
-.item-container {
-  white-space: nowrap;
-  overflow: hidden;
-}
 
 .item i {
   font-size: 1.2rem;
@@ -96,18 +97,20 @@ const changeLanguage = (lang) => {
   color: #647eff;
 }
 
-.cursor-pointer {
-  cursor: pointer;
+.trans {
+  transition: opacity .25s ease;
+  opacity: 1;
 }
 
 
 /* breakpoint: 992 */
-
+/*
 @media (max-width: 992px) {
   .item {
     display: none;
   }
 }
+ */
 
 
 </style>
