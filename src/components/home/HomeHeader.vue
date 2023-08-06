@@ -5,12 +5,37 @@
           <img width="45" src="https://s3-alpha.figma.com/hub/file/1913095808/a7bdc469-cd70-4ea1-bb57-b59204ad8182-cover.png" alt="">
         </v-col>
         <v-col class="d-flex align-center justify-end" :cols="8">
-          <span class="mr-6">
-            <a class="item-link item" href="https://github.com/ahmedy00/cv-maker" target="_blank">{{ $t('Contribution') }}</a>
-          </span>
-          <RouterLink class="item-link" to="">
-            <span class="item mr-4">{{ $t('PreviousResumes') }}</span>
-          </RouterLink>
+          <template v-if="isMobile">
+            <v-menu>
+              <template v-slot:activator="{ props }">
+                <v-icon :color="'white'" :size="20" v-bind="props">
+                  <i class="fa-solid fa-bars"></i>
+                </v-icon>
+               </template>
+              <v-card>
+                <v-list class="py-0">
+                  <v-list-item>
+                    <span class="mr-6">
+                      <a class="item text-decoration-none" href="https://github.com/ahmedy00/cv-maker" target="_blank">{{ $t('Contribution') }}</a>
+                    </span>
+                  </v-list-item>
+                  <v-list-item>
+                    <RouterLink class="text-decoration-none" to="">
+                      <span class="item mr-4">{{ $t('PreviousResumes') }}</span>
+                    </RouterLink>
+                  </v-list-item>
+                </v-list>
+              </v-card>
+            </v-menu>
+          </template>
+          <template v-else>
+            <span class="mr-6">
+              <a class="item-link item" href="https://github.com/ahmedy00/cv-maker" target="_blank">{{ $t('Contribution') }}</a>
+            </span>
+            <RouterLink class="item-link" to="">
+              <span class="item mr-4">{{ $t('PreviousResumes') }}</span>
+            </RouterLink>
+          </template>
           <v-list-item class="mr-2">
             <v-btn
               dense
@@ -55,6 +80,7 @@
 import { languages } from '../../app'
 import router from '../../router'
 import { useAppStore } from '../../store'
+import { isMobile } from '../../app'
 
 const props = defineProps({
   headerHeight: {
